@@ -23,7 +23,7 @@ Example:
 
       #svg.animated path {
         stroke: var(--color-main);
-        stroke-width: 0.5;
+        stroke-width: .5;
         stroke-linecap: butt;
         stroke-linejoin: round;
 
@@ -40,8 +40,13 @@ Example:
           stroke-dashoffset: 1;
         }
 
+        85% {
+          fill: var(--color-main);
+        }
+
         100% {
           stroke-dashoffset: 0;
+          stroke-width: 0;
           fill: var(--color-main);
         }
       }
