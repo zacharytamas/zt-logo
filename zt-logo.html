@@ -23,24 +23,26 @@ Example:
 
       #svg.animated path {
         stroke: var(--color-main);
-        stroke-width: 1;
+        stroke-width: 0.5;
         stroke-linecap: butt;
         stroke-linejoin: round;
 
-        animation: dash 2s ease-in-out forwards;
-        /*fill: var(--color-main);*/
+        animation: dash 1.2s ease-in-out forwards;
         fill: none;
+      }
+
+      #svg:hover path {
+        opacity: 0.9;
       }
 
       @keyframes dash {
         50% {
-          stroke-dashoffset: 0;
+          stroke-dashoffset: 1;
         }
 
         100% {
           stroke-dashoffset: 0;
           fill: var(--color-main);
-          /*stroke-width: 0;*/
         }
       }
 
@@ -53,14 +55,12 @@ Example:
 
 <svg id="svg" viewBox="0 0 212 102" xmlns="http://www.w3.org/2000/svg">
   <g fill-opacity=".8">
-
     <path id="z-top" d="M1 1h100v25H1z"/>
     <path id="z-middle" d="M7 77.71L77.71 7l17.678 17.678-70.71 70.71z"/>
     <path id="z-bottom" d="M1 76h100v25H1z"/>
 
     <path id="t-top" d="M111 1h100v25H111z"/>
-    <path id="z-vert" d="M149 1h25v100h-25z"/>
-
+    <path id="t-vert" d="M149 1h25v100h-25z"/>
   </g>
 </svg>
 
@@ -94,9 +94,6 @@ Example:
         if (!this.noAnimation) {
           this.toggleClass('animated', true, this.$.svg);
           var paths = this.$.svg.querySelectorAll('path');
-          var cumulativeDelay = 0;
-
-          var DELAY = 2 / 5;  // 2s divided by 5 lines
 
           for (var i = 0; i < paths.length; i++) {
             var path = paths[i];
@@ -104,8 +101,6 @@ Example:
 
             path.style.strokeDasharray = length;
             path.style.strokeDashoffset = length;
-            path.style.animationDelay = cumulativeDelay;
-            cumulativeDelay += DELAY;
           }
         }
       }
