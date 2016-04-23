@@ -21,6 +21,10 @@ Example:
         --color-main: #BD0FE1;
       }
 
+      #svg {
+        cursor: pointer;
+      }
+
       #svg path {
         fill: var(--color-main);
       }
@@ -31,7 +35,7 @@ Example:
         stroke-linecap: butt;
         stroke-linejoin: round;
 
-        animation: dash 1.2s ease-in-out forwards;
+        animation: dash 3s ease-out forwards;
         fill: none;
       }
 
@@ -62,7 +66,7 @@ Example:
     </div> -->
 
 
-<svg id="svg" viewBox="0 0 212 102" xmlns="http://www.w3.org/2000/svg">
+<svg id="svg" viewBox="0 0 212 102" xmlns="http://www.w3.org/2000/svg" on-tap="_logoTapped">
   <g fill-opacity=".8">
     <path id="z-top" d="M1 1h100v25H1z"/>
     <path id="z-middle" d="M7 77.71L77.71 7l17.678 17.678-70.71 70.71z"/>
@@ -112,6 +116,10 @@ Example:
             path.style.strokeDashoffset = length;
           }
         }
+      },
+
+      _logoTapped: function() {
+        this.fire('logo-tapped');
       }
 
       /**
